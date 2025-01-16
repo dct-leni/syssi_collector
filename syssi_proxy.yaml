@@ -33,9 +33,9 @@ external_components:
 packages:
   remote_package_files:
     url: https://github.com/dct-leni/syssi_proxy
-    files: [smg_ii_sensors.yml, jk_bms_sensors.yml]  # optional; if not specified, all files will be included
+    files: [smg_ii_sensors.yaml, jk_bms_sensors.yaml]  # optional; if not specified, all files will be included
     ref: main  # optional
-    refresh: 1d  # optional
+    refresh: 0s
 
 substitutions:
   name: combined_device
@@ -62,13 +62,13 @@ uart:
     rx_pin: ${bms_rx_pin}
 
 jk_modbus:
-  - id: modbus_bms
+  - id: bms0
     uart_id: uart_bms
     rx_timeout: 50ms
 
 jk_bms:
   - id: bms0
-    jk_modbus_id: modbus_bms
+    jk_modbus_id: bms0
     update_interval: 5s
 
 modbus:
