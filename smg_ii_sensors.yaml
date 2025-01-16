@@ -1,3 +1,5 @@
+smg:
+
 sensor:
   - platform: total_daily_energy
     name: "${name} PV energy today"

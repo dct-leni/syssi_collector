@@ -1,3 +1,5 @@
+jk_bms:
+
 binary_sensor:
   - platform: jk_bms
     jk_bms_id: bms0
