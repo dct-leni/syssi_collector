@@ -27,10 +27,15 @@ logger:
   level: INFO
 
 external_components:
-  - source: github://dct-leni/syssi_proxy@main
-    refresh: 0s
   - source: github://syssi/esphome-jk-bms@2.1.0
     refresh: 0s
+
+packages:
+  remote_package_files:
+    url: https://github.com/dct-leni/syssi_proxy
+    files: [smg_ii_sensors.yml, jk_bms_sensors.yml]  # optional; if not specified, all files will be included
+    ref: main  # optional
+    refresh: 1d  # optional
 
 substitutions:
   name: combined_device
@@ -78,7 +83,3 @@ modbus_controller:
     setup_priority: -10
     command_throttle: 200ms
     update_interval: 10s
-
-includes:
-  - smg_ii_sensors.yaml
-  - jk_bms_sensors.yaml
