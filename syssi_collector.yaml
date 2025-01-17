@@ -1,3 +1,7 @@
+# https://github.com/syssi/esphome-smg-ii/blob/main/esp32-example.yaml
+# https://github.com/syssi/esphome-jk-bms/blob/main/esp32-jk-pb-modbus-example.yaml
+# https://github.com/txubelaxu/esphome-jk-bms/blob/main/esp32-S3-example-jkpb-rs485_0master_2slaves.yaml
+
 esphome:
   name: "syssi-collector"
   friendly_name: syssi_collector
@@ -141,7 +145,7 @@ jk_rs485_bms:
   - id: bms0
     rs485_address: 0x01
     jk_rs485_sniffer_id: sniffer0
-    update_interval: 60s
+    update_interval: 30s
 
 button:
   # https://esphome.io/components/button/restart
