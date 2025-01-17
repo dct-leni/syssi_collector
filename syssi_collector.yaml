@@ -71,8 +71,10 @@ external_components:
   # - source: github://syssi/esphome-jk-bms@main
   #   refresh: 0s
   - source: github://txubelaxu/esphome-jk-bms@main
-    components: [ jk_rs485_sniffer , jk_rs485_bms ]
     refresh: 0s
+    components: 
+      - jk_rs485_sniffer
+      - jk_rs485_bms
 
 packages:
   remote_package_files:
