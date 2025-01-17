@@ -27,7 +27,7 @@ logger:
   level: INFO
 
 external_components:
-  - source: github://syssi/esphome-jk-bms@2.1.0
+  - source: github://syssi/esphome-jk-bms@main
     refresh: 0s
 
 substitutions:
@@ -37,12 +37,12 @@ substitutions:
   bms_tx_pin: GPIO05
   bms_rx_pin: GPIO06
 
-packages:
-  remote_package_files:
-    url: https://github.com/dct-leni/syssi_proxy
-    files: [smg_ii_sensors.yaml, jk_bms_sensors.yaml]  # optional; if not specified, all files will be included
-    ref: main  # optional
-    refresh: 0s
+# packages:
+#   remote_package_files:
+#     url: https://github.com/dct-leni/syssi_proxy
+#     files: [smg_ii_sensors.yaml, jk_bms_sensors.yaml]  # optional; if not specified, all files will be included
+#     ref: main  # optional
+#     refresh: 0s
 
 time:
   - platform: sntp
@@ -61,25 +61,33 @@ uart:
     tx_pin: ${bms_tx_pin}
     rx_pin: ${bms_rx_pin}
 
-jk_modbus:
+modbus:
   - id: modbus_bms
     uart_id: uart_bms
-    rx_timeout: 50ms
-
-jk_bms:
-  - id: bms0
-    jk_modbus_id: modbus_bms
-    update_interval: 5s
-
-modbus:
+    flow_control_pin: GPIO12
   - id: modbus_smg
     uart_id: uart_smg
     send_wait_time: 200ms
 
 modbus_controller:
+  - id: bms0
+    # Dip switch configuration of a single pack setup / address 0x01
+    #  1    2    4    5
+    #  on, off, off, off (0x01)
+    #
+    # Don't turn off all dip switches / don't use device address 0x00.
+    # This is the Modbus Master mode. You must select a device address
+    # between 0x01 and 0x0f so the BMS acts as Modbus Slave.
+    address: 0x01
+    modbus_id: modbus_bms
+    setup_priority: -10
+    update_interval: 5s
+    command_throttle: 50ms
   - id: smg0
     address: 0x01
     modbus_id: modbus_smg
-    setup_priority: -10
     command_throttle: 200ms
     update_interval: 10s
+
+<<: !include jk_bms_sensors.yaml
+# <<: !include smg_ii_sensors.yaml
