@@ -99,7 +99,7 @@ uart:
 # UART for JK-BMS
   - id: uart_bms
     baud_rate: 115200
-    rx_buffer_size: 500 # 384
+    rx_buffer_size: 384
     tx_pin: ${bms_tx_pin}
     rx_pin: ${bms_rx_pin}
 
@@ -129,7 +129,7 @@ modbus_controller:
     address: 0x01
     modbus_id: modbus_smg
     command_throttle: 200ms
-    update_interval: 10s
+    update_interval: 30s
 
 jk_rs485_sniffer:
   - id: sniffer0
@@ -141,7 +141,22 @@ jk_rs485_bms:
   - id: bms0
     rs485_address: 0x01
     jk_rs485_sniffer_id: sniffer0
+    update_interval: 60s
+
+button:
+  # https://esphome.io/components/button/restart
+  - platform: restart
+    name: ${name} ESP32 Restart
+    entity_category: config
+
+sensor:
+  # https://esphome.io/components/sensor/internal_temperature
+  - platform: internal_temperature
+    name: ${name} internal temperature
+    id: esp32_internal_temperature
     update_interval: 30s
+    entity_category: diagnostic
+
 
 light:
   # https://esphome.io/components/light/esp32_rmt_led_strip
@@ -159,21 +174,6 @@ light:
       - pulse:
           transition_length: 350ms
           update_interval: 350ms
-
-button:
-  # https://esphome.io/components/button/restart
-  - platform: restart
-    name: ${name} ESP32 Restart
-    entity_category: config
-
-sensor:
-  # https://esphome.io/components/sensor/internal_temperature
-  - platform: internal_temperature
-    name: ${name} internal temperature
-    id: esp32_internal_temperature
-    update_interval: 10s
-    entity_category: diagnostic
-
 
 interval:
   - interval: 5s
