@@ -5,9 +5,10 @@ esphome:
   name_add_mac_suffix: false
 
 substitutions:
-  name: syssi_collector
-  smg_tx_pin: GPIO02
-  smg_rx_pin: GPIO03
+  bms_name: bms0
+  inv_name: anenji
+  smg_tx_pin: GPIO08
+  smg_rx_pin: GPIO07
   bms_tx_pin: GPIO05
   bms_rx_pin: GPIO06
 

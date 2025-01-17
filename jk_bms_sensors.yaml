@@ -1,7 +1,7 @@
 binary_sensor:
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} charging"
+    name: "${bms_name} charging"
     address: 0x12C0
     register_type: holding
     lambda: |-
@@ -9,7 +9,7 @@ binary_sensor:
 
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} discharging"
+    name: "${bms_name} discharging"
     address: 0x12C0
     register_type: holding
     lambda: |-
@@ -17,7 +17,7 @@ binary_sensor:
 
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} balancing"
+    name: "${bms_name} balancing"
     address: 0x12A6
     register_type: holding
     lambda: |-
@@ -26,7 +26,7 @@ binary_sensor:
 sensor:
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell undervoltage protection"
+    name: "${bms_name} cell undervoltage protection"
     address: 0x1004
     register_type: holding
     value_type: U_DWORD
@@ -40,7 +40,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell overvoltage protection"
+    name: "${bms_name} cell overvoltage protection"
     address: 0x100C
     register_type: holding
     value_type: U_DWORD
@@ -53,7 +53,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} charging overcurrent protection"
+    name: "${bms_name} charging overcurrent protection"
     address: 0x102C
     register_type: holding
     value_type: U_DWORD
@@ -66,7 +66,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} discharging overcurrent protection"
+    name: "${bms_name} discharging overcurrent protection"
     address: 0x1038
     register_type: holding
     value_type: U_DWORD
@@ -79,7 +79,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} charging overtemperature protection"
+    name: "${bms_name} charging overtemperature protection"
     address: 0x104C
     register_type: holding
     value_type: U_DWORD
@@ -91,7 +91,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} discharging overtemperature protection"
+    name: "${bms_name} discharging overtemperature protection"
     address: 0x1054
     register_type: holding
     value_type: U_DWORD
@@ -103,7 +103,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} charging undertemperature protection"
+    name: "${bms_name} charging undertemperature protection"
     address: 0x105C
     register_type: holding
     value_type: S_DWORD
@@ -115,7 +115,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} MOS high temperature protection"
+    name: "${bms_name} MOS high temperature protection"
     address: 0x1064
     register_type: holding
     value_type: U_DWORD
@@ -127,7 +127,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell count"
+    name: "${bms_name} cell count"
     address: 0x106C
     register_type: holding
     value_type: U_DWORD
@@ -136,7 +136,7 @@ sensor:
   # 0x1200    0    UINT16    2    R    CellVol0    mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 1"
+    name: "${bms_name} cell voltage 1"
     address: 0x1200
     register_type: holding
     value_type: U_WORD
@@ -151,7 +151,7 @@ sensor:
   # 0x1202    2    UINT16    2    R    CellVol1    mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 2"
+    name: "${bms_name} cell voltage 2"
     address: 0x1202
     register_type: holding
     value_type: U_WORD
@@ -165,7 +165,7 @@ sensor:
   # 0x1204    4    UINT16    2    R    CellVol2    mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 3"
+    name: "${bms_name} cell voltage 3"
     address: 0x1204
     register_type: holding
     value_type: U_WORD
@@ -179,7 +179,7 @@ sensor:
   # 0x1206    6    UINT16    2    R    CellVol3    mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 4"
+    name: "${bms_name} cell voltage 4"
     address: 0x1206
     register_type: holding
     value_type: U_WORD
@@ -193,7 +193,7 @@ sensor:
   # 0x1208    8    UINT16    2    R    CellVol4    mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 5"
+    name: "${bms_name} cell voltage 5"
     address: 0x1208
     register_type: holding
     value_type: U_WORD
@@ -207,7 +207,7 @@ sensor:
   # 0x120A   10    UINT16    2    R    CellVol5    mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 6"
+    name: "${bms_name} cell voltage 6"
     address: 0x120A
     register_type: holding
     value_type: U_WORD
@@ -221,7 +221,7 @@ sensor:
   # 0x120C   12    UINT16    2    R    CellVol6    mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 7"
+    name: "${bms_name} cell voltage 7"
     address: 0x120C
     register_type: holding
     value_type: U_WORD
@@ -235,7 +235,7 @@ sensor:
   # 0x120E   14    UINT16    2    R    CellVol7    mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 8"
+    name: "${bms_name} cell voltage 8"
     address: 0x120E
     register_type: holding
     value_type: U_WORD
@@ -249,7 +249,7 @@ sensor:
   # 0x1210   16    UINT16    2    R    CellVol8    mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 9"
+    name: "${bms_name} cell voltage 9"
     address: 0x1210
     register_type: holding
     value_type: U_WORD
@@ -263,7 +263,7 @@ sensor:
   # 0x1212   18    UINT16    2    R    CellVol9    mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 10"
+    name: "${bms_name} cell voltage 10"
     address: 0x1212
     register_type: holding
     value_type: U_WORD
@@ -277,7 +277,7 @@ sensor:
   # 0x1214   20    UINT16    2    R    CellVol10   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 11"
+    name: "${bms_name} cell voltage 11"
     address: 0x1214
     register_type: holding
     value_type: U_WORD
@@ -291,7 +291,7 @@ sensor:
   # 0x1216   22    UINT16    2    R    CellVol11   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 12"
+    name: "${bms_name} cell voltage 12"
     address: 0x1216
     register_type: holding
     value_type: U_WORD
@@ -305,7 +305,7 @@ sensor:
   # 0x1218   24    UINT16    2    R    CellVol12   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 13"
+    name: "${bms_name} cell voltage 13"
     address: 0x1218
     register_type: holding
     value_type: U_WORD
@@ -319,7 +319,7 @@ sensor:
   # 0x121A   26    UINT16    2    R    CellVol13   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 14"
+    name: "${bms_name} cell voltage 14"
     address: 0x121A
     register_type: holding
     value_type: U_WORD
@@ -333,7 +333,7 @@ sensor:
   # 0x121C   28    UINT16    2    R    CellVol14   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 15"
+    name: "${bms_name} cell voltage 15"
     address: 0x121C
     register_type: holding
     value_type: U_WORD
@@ -347,7 +347,7 @@ sensor:
   # 0x121E   30    UINT16    2    R    CellVol15   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 16"
+    name: "${bms_name} cell voltage 16"
     address: 0x121E
     register_type: holding
     value_type: U_WORD
@@ -361,7 +361,7 @@ sensor:
   # 0x1220   32    UINT16    2    R    CellVol16   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 17"
+    name: "${bms_name} cell voltage 17"
     address: 0x1220
     register_type: holding
     value_type: U_WORD
@@ -375,7 +375,7 @@ sensor:
   # 0x1222   34    UINT16    2    R    CellVol17   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 18"
+    name: "${bms_name} cell voltage 18"
     address: 0x1222
     register_type: holding
     value_type: U_WORD
@@ -389,7 +389,7 @@ sensor:
   # 0x1224   36    UINT16    2    R    CellVol18   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 19"
+    name: "${bms_name} cell voltage 19"
     address: 0x1224
     register_type: holding
     value_type: U_WORD
@@ -403,7 +403,7 @@ sensor:
   # 0x1226   38    UINT16    2    R    CellVol19   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 20"
+    name: "${bms_name} cell voltage 20"
     address: 0x1226
     register_type: holding
     value_type: U_WORD
@@ -417,7 +417,7 @@ sensor:
   # 0x1228   40    UINT16    2    R    CellVol20   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 21"
+    name: "${bms_name} cell voltage 21"
     address: 0x1228
     register_type: holding
     value_type: U_WORD
@@ -431,7 +431,7 @@ sensor:
   # 0x122A   42    UINT16    2    R    CellVol21   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 22"
+    name: "${bms_name} cell voltage 22"
     address: 0x122A
     register_type: holding
     value_type: U_WORD
@@ -445,7 +445,7 @@ sensor:
   # 0x122C   44    UINT16    2    R    CellVol22   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 23"
+    name: "${bms_name} cell voltage 23"
     address: 0x122C
     register_type: holding
     value_type: U_WORD
@@ -459,7 +459,7 @@ sensor:
   # 0x122E   46    UINT16    2    R    CellVol23   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 24"
+    name: "${bms_name} cell voltage 24"
     address: 0x122E
     register_type: holding
     value_type: U_WORD
@@ -473,7 +473,7 @@ sensor:
   # 0x1230   48    UINT16    2    R    CellVol24   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 25"
+    name: "${bms_name} cell voltage 25"
     address: 0x1230
     register_type: holding
     value_type: U_WORD
@@ -487,7 +487,7 @@ sensor:
   # 0x1232   50    UINT16    2    R    CellVol25   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 26"
+    name: "${bms_name} cell voltage 26"
     address: 0x1232
     register_type: holding
     value_type: U_WORD
@@ -501,7 +501,7 @@ sensor:
   # 0x1234   52    UINT16    2    R    CellVol26   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 27"
+    name: "${bms_name} cell voltage 27"
     address: 0x1234
     register_type: holding
     value_type: U_WORD
@@ -515,7 +515,7 @@ sensor:
   # 0x1236   54    UINT16    2    R    CellVol27   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 28"
+    name: "${bms_name} cell voltage 28"
     address: 0x1236
     register_type: holding
     value_type: U_WORD
@@ -529,7 +529,7 @@ sensor:
   # 0x1238   56    UINT16    2    R    CellVol28   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 29"
+    name: "${bms_name} cell voltage 29"
     address: 0x1238
     register_type: holding
     value_type: U_WORD
@@ -543,7 +543,7 @@ sensor:
   # 0x123A   58    UINT16    2    R    CellVol29   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 30"
+    name: "${bms_name} cell voltage 30"
     address: 0x123A
     register_type: holding
     value_type: U_WORD
@@ -557,7 +557,7 @@ sensor:
   # 0x123C   60    UINT16    2    R    CellVol30   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 31"
+    name: "${bms_name} cell voltage 31"
     address: 0x123C
     register_type: holding
     value_type: U_WORD
@@ -571,7 +571,7 @@ sensor:
   # 0x123E   62    UINT16    2    R    CellVol31   mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell voltage 32"
+    name: "${bms_name} cell voltage 32"
     address: 0x123E
     register_type: holding
     value_type: U_WORD
@@ -588,7 +588,7 @@ sensor:
   # 0x1248   72    UINT8/UINT8 2  R    MaxVolCellNbr / MinVolCellNbr
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} max voltage cell number"
+    name: "${bms_name} max voltage cell number"
     address: 0x1248
     register_type: holding
     value_type: U_WORD
@@ -601,7 +601,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} delta cell voltage"
+    name: "${bms_name} delta cell voltage"
     address: 0x1246
     register_type: holding
     value_type: U_WORD
@@ -614,7 +614,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} min voltage cell number"
+    name: "${bms_name} min voltage cell number"
     address: 0x1248
     register_type: holding
     value_type: U_WORD
@@ -628,7 +628,7 @@ sensor:
   # 0x124A   74    UINT16    2    R    CellWireRes0    mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 1 wire resistance"
+    name: "${bms_name} cell 1 wire resistance"
     address: 0x124A
     register_type: holding
     value_type: U_WORD
@@ -641,7 +641,7 @@ sensor:
   # 0x124C   76    UINT16    2    R    CellWireRes1    mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 2 wire resistance"
+    name: "${bms_name} cell 2 wire resistance"
     address: 0x124C
     register_type: holding
     value_type: U_WORD
@@ -654,7 +654,7 @@ sensor:
   # 0x124E   78    UINT16    2    R    CellWireRes2    mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 3 wire resistance"
+    name: "${bms_name} cell 3 wire resistance"
     address: 0x124E
     register_type: holding
     value_type: U_WORD
@@ -667,7 +667,7 @@ sensor:
   # 0x1250   80    UINT16    2    R    CellWireRes3    mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 4 wire resistance"
+    name: "${bms_name} cell 4 wire resistance"
     address: 0x1250
     register_type: holding
     value_type: U_WORD
@@ -680,7 +680,7 @@ sensor:
   # 0x1252   82    UINT16    2    R    CellWireRes4    mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 5 wire resistance"
+    name: "${bms_name} cell 5 wire resistance"
     address: 0x1252
     register_type: holding
     value_type: U_WORD
@@ -693,7 +693,7 @@ sensor:
   # 0x1254   84    UINT16    2    R    CellWireRes5    mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 6 wire resistance"
+    name: "${bms_name} cell 6 wire resistance"
     address: 0x1254
     register_type: holding
     value_type: U_WORD
@@ -706,7 +706,7 @@ sensor:
   # 0x1256   86    UINT16    2    R    CellWireRes6    mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 7 wire resistance"
+    name: "${bms_name} cell 7 wire resistance"
     address: 0x1256
     register_type: holding
     value_type: U_WORD
@@ -719,7 +719,7 @@ sensor:
   # 0x1258   88    UINT16    2    R    CellWireRes7    mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 8 wire resistance"
+    name: "${bms_name} cell 8 wire resistance"
     address: 0x1258
     register_type: holding
     value_type: U_WORD
@@ -732,7 +732,7 @@ sensor:
   # 0x125A   90    UINT16    2    R    CellWireRes8    mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 9 wire resistance"
+    name: "${bms_name} cell 9 wire resistance"
     address: 0x125A
     register_type: holding
     value_type: U_WORD
@@ -745,7 +745,7 @@ sensor:
   # 0x125C   92    UINT16    2    R    CellWireRes9    mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 10 wire resistance"
+    name: "${bms_name} cell 10 wire resistance"
     address: 0x125C
     register_type: holding
     value_type: U_WORD
@@ -758,7 +758,7 @@ sensor:
   # 0x125E   94    UINT16    2    R    CellWireRes10   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 11 wire resistance"
+    name: "${bms_name} cell 11 wire resistance"
     address: 0x125E
     register_type: holding
     value_type: U_WORD
@@ -771,7 +771,7 @@ sensor:
   # 0x1260   96    UINT16    2    R    CellWireRes11   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 12 wire resistance"
+    name: "${bms_name} cell 12 wire resistance"
     address: 0x1260
     register_type: holding
     value_type: U_WORD
@@ -784,7 +784,7 @@ sensor:
   # 0x1262   98    UINT16    2    R    CellWireRes12   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 13 wire resistance"
+    name: "${bms_name} cell 13 wire resistance"
     address: 0x1262
     register_type: holding
     value_type: U_WORD
@@ -797,7 +797,7 @@ sensor:
   # 0x1264   100   UINT16    2    R    CellWireRes13   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 14 wire resistance"
+    name: "${bms_name} cell 14 wire resistance"
     address: 0x1264
     register_type: holding
     value_type: U_WORD
@@ -810,7 +810,7 @@ sensor:
   # 0x1266   102   UINT16    2    R    CellWireRes14   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 15 wire resistance"
+    name: "${bms_name} cell 15 wire resistance"
     address: 0x1266
     register_type: holding
     value_type: U_WORD
@@ -823,7 +823,7 @@ sensor:
   # 0x1268   104   UINT16    2    R    CellWireRes15   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 16 wire resistance"
+    name: "${bms_name} cell 16 wire resistance"
     address: 0x1268
     register_type: holding
     value_type: U_WORD
@@ -836,7 +836,7 @@ sensor:
   # 0x126A   106   UINT16    2    R    CellWireRes16   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 17 wire resistance"
+    name: "${bms_name} cell 17 wire resistance"
     address: 0x126A
     register_type: holding
     value_type: U_WORD
@@ -849,7 +849,7 @@ sensor:
   # 0x126C   108   UINT16    2    R    CellWireRes17   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 18 wire resistance"
+    name: "${bms_name} cell 18 wire resistance"
     address: 0x126C
     register_type: holding
     value_type: U_WORD
@@ -862,7 +862,7 @@ sensor:
   # 0x126E   110   UINT16    2    R    CellWireRes18   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 19 wire resistance"
+    name: "${bms_name} cell 19 wire resistance"
     address: 0x126E
     register_type: holding
     value_type: U_WORD
@@ -875,7 +875,7 @@ sensor:
   # 0x1270   112   UINT16    2    R    CellWireRes19   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 20 wire resistance"
+    name: "${bms_name} cell 20 wire resistance"
     address: 0x1270
     register_type: holding
     value_type: U_WORD
@@ -888,7 +888,7 @@ sensor:
   # 0x1272   114   UINT16    2    R    CellWireRes20   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 21 wire resistance"
+    name: "${bms_name} cell 21 wire resistance"
     address: 0x1272
     register_type: holding
     value_type: U_WORD
@@ -901,7 +901,7 @@ sensor:
   # 0x1274   116   UINT16    2    R    CellWireRes21   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 22 wire resistance"
+    name: "${bms_name} cell 22 wire resistance"
     address: 0x1274
     register_type: holding
     value_type: U_WORD
@@ -914,7 +914,7 @@ sensor:
   # 0x1276   118   UINT16    2    R    CellWireRes22   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 23 wire resistance"
+    name: "${bms_name} cell 23 wire resistance"
     address: 0x1276
     register_type: holding
     value_type: U_WORD
@@ -927,7 +927,7 @@ sensor:
   # 0x1278   120   UINT16    2    R    CellWireRes23   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 24 wire resistance"
+    name: "${bms_name} cell 24 wire resistance"
     address: 0x1278
     register_type: holding
     value_type: U_WORD
@@ -940,7 +940,7 @@ sensor:
   # 0x127A   122   UINT16    2    R    CellWireRes24   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 25 wire resistance"
+    name: "${bms_name} cell 25 wire resistance"
     address: 0x127A
     register_type: holding
     value_type: U_WORD
@@ -953,7 +953,7 @@ sensor:
   # 0x127C   124   UINT16    2    R    CellWireRes25   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 26 wire resistance"
+    name: "${bms_name} cell 26 wire resistance"
     address: 0x127C
     register_type: holding
     value_type: U_WORD
@@ -966,7 +966,7 @@ sensor:
   # 0x127E   126   UINT16    2    R    CellWireRes26   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 27 wire resistance"
+    name: "${bms_name} cell 27 wire resistance"
     address: 0x127E
     register_type: holding
     value_type: U_WORD
@@ -979,7 +979,7 @@ sensor:
   # 0x1280   128   UINT16    2    R    CellWireRes27   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 28 wire resistance"
+    name: "${bms_name} cell 28 wire resistance"
     address: 0x1280
     register_type: holding
     value_type: U_WORD
@@ -992,7 +992,7 @@ sensor:
   # 0x1282   130   UINT16    2    R    CellWireRes28   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 29 wire resistance"
+    name: "${bms_name} cell 29 wire resistance"
     address: 0x1282
     register_type: holding
     value_type: U_WORD
@@ -1005,7 +1005,7 @@ sensor:
   # 0x1284   132   UINT16    2    R    CellWireRes29   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 30 wire resistance"
+    name: "${bms_name} cell 30 wire resistance"
     address: 0x1284
     register_type: holding
     value_type: U_WORD
@@ -1018,7 +1018,7 @@ sensor:
   # 0x1286   134   UINT16    2    R    CellWireRes30   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 31 wire resistance"
+    name: "${bms_name} cell 31 wire resistance"
     address: 0x1286
     register_type: holding
     value_type: U_WORD
@@ -1031,7 +1031,7 @@ sensor:
   # 0x1288   136   UINT16    2    R    CellWireRes31   mΩ
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} cell 32 wire resistance"
+    name: "${bms_name} cell 32 wire resistance"
     address: 0x1288
     register_type: holding
     value_type: U_WORD
@@ -1044,7 +1044,7 @@ sensor:
   # 0x128A   138    INT16    2    R    TempMos         0.1 °C
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} mosfet temperature"
+    name: "${bms_name} mosfet temperature"
     address: 0x128A
     register_type: holding
     value_type: S_WORD
@@ -1058,7 +1058,7 @@ sensor:
   # 0x1290   144   UINT32    4    R    BatVol          mV
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} total voltage"
+    name: "${bms_name} total voltage"
     address: 0x1290
     register_type: holding
     value_type: U_DWORD_R
@@ -1072,7 +1072,7 @@ sensor:
   # 0x1294   148   UINT32    4    R    BatWatt         mW
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} power"
+    name: "${bms_name} power"
     address: 0x1294
     register_type: holding
     value_type: S_DWORD
@@ -1091,7 +1091,7 @@ sensor:
   - platform: modbus_controller
     modbus_controller_id: bms0
     id: current
-    name: "${name} current"
+    name: "${bms_name} current"
     address: 0x1298
     register_type: holding
     value_type: S_DWORD
@@ -1105,7 +1105,7 @@ sensor:
   # 0x129C   156    INT16    2    R    TempBat 1       0.1 °C
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} temperature sensor 1"
+    name: "${bms_name} temperature sensor 1"
     address: 0x129C
     register_type: holding
     value_type: S_WORD
@@ -1118,7 +1118,7 @@ sensor:
   # 0x129E   158    INT16    2    R    TempBat 2       0.1 °C
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} temperature sensor 2"
+    name: "${bms_name} temperature sensor 2"
     address: 0x129E
     register_type: holding
     value_type: S_WORD
@@ -1132,7 +1132,7 @@ sensor:
   - platform: modbus_controller
     modbus_controller_id: bms0
     id: alarms_bitmask
-    name: "${name} alarms bitmask"
+    name: "${bms_name} alarms bitmask"
     address: 0x12A0
     register_type: holding
     value_type: U_DWORD
@@ -1142,7 +1142,7 @@ sensor:
   # 0x12A4   164    INT16    2    R    BalanCurrent    mA
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} balance current"
+    name: "${bms_name} balance current"
     address: 0x12A4
     register_type: holding
     value_type: S_WORD
@@ -1156,7 +1156,7 @@ sensor:
   # 0x12A6   166 UINT8+UINT8 2    R    BalanStatatus (2:放电; 1:充电 ; 0:关闭) / SOCStateOfcharge %
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} state of charge"
+    name: "${bms_name} state of charge"
     address: 0x12A6
     register_type: holding
     value_type: U_WORD
@@ -1169,7 +1169,7 @@ sensor:
   # 0x12A8   168    INT32    2    R    SOCCapRemain    mAH
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} capacity remaining derived"
+    name: "${bms_name} capacity remaining derived"
     address: 0x12A8
     register_type: holding
     value_type: U_DWORD
@@ -1182,7 +1182,7 @@ sensor:
   # 0x12AC   172   UINT32    4    R    SOCFullChargeCap    mAH
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} actual battery capacity"
+    name: "${bms_name} actual battery capacity"
     address: 0x12AC
     register_type: holding
     value_type: U_DWORD
@@ -1195,7 +1195,7 @@ sensor:
   # 0x12B0   176   UINT32    4    R    SOCCycleCount   次
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} charging cycles"
+    name: "${bms_name} charging cycles"
     address: 0x12B0
     register_type: holding
     value_type: U_DWORD
@@ -1205,7 +1205,7 @@ sensor:
   # 0x12B4   180   UINT32    4    R    SOCCycleCap     mAH
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} total charging cycle capacity"
+    name: "${bms_name} total charging cycle capacity"
     address: 0x12B4
     register_type: holding
     value_type: U_DWORD
@@ -1218,7 +1218,7 @@ sensor:
   # 0x12B8   184 UINT8+UINT8 2    R    StateOfHealth % / Precharge stats (1:打开 ; 0:关闭)
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} state of health"
+    name: "${bms_name} state of health"
     address: 0x12B8
     register_type: holding
     value_type: U_WORD
@@ -1233,7 +1233,7 @@ sensor:
   # 0x12BC   188   UINT32    4    R    RunTime         S
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} total runtime in seconds"
+    name: "${bms_name} total runtime in seconds"
     address: 0x12BC
     register_type: holding
     value_type: U_DWORD
@@ -1258,7 +1258,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} temperature sensor 3"
+    name: "${bms_name} temperature sensor 3"
     address: 0x12FA
     register_type: holding
     value_type: S_WORD
@@ -1271,7 +1271,7 @@ sensor:
   - platform: modbus_controller
     modbus_controller_id: bms0
     id: jkbms_bat_temp4
-    name: "${name} temperature sensor 4"
+    name: "${bms_name} temperature sensor 4"
     address: 0x12FC
     register_type: holding
     value_type: S_WORD
@@ -1284,7 +1284,7 @@ sensor:
 switch:
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} discharging"
+    name: "${bms_name} discharging"
     custom_command: [0x00, 0x03, 0x10, 0x74, 0x00, 0x02]
     write_lambda: |-
       payload.push_back(0x00);
@@ -1308,7 +1308,7 @@ switch:
 
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} charging"
+    name: "${bms_name} charging"
     custom_command: [0x00, 0x03, 0x10, 0x70, 0x00, 0x02]
     write_lambda: |-
       payload.push_back(0x00);
@@ -1332,7 +1332,7 @@ switch:
 
   - platform: modbus_controller
     modbus_controller_id: bms0
-    name: "${name} balancing"
+    name: "${bms_name} balancing"
     custom_command: [0x00, 0x03, 0x10, 0x78, 0x00, 0x02]
     write_lambda: |-
       payload.push_back(0x00);
@@ -1356,7 +1356,7 @@ switch:
 
 text_sensor:
   - platform: template
-    name: "${name} total runtime formatted"
+    name: "${bms_name} total runtime formatted"
     update_interval: 60s
     lambda: |-
       std::string value = "Unknown";
@@ -1374,7 +1374,7 @@ text_sensor:
 
   - platform: template
     id: alarms
-    name: "${name} alarms"
+    name: "${bms_name} alarms"
     update_interval: never
     lambda: |-
       static const uint8_t alarms_size = 22;
