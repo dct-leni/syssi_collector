@@ -3,6 +3,8 @@ esphome:
   friendly_name: syssi_collector
   min_version: 2024.6.0
   name_add_mac_suffix: false
+  platformio_options:
+     board_build.flash_mode: dio # Needed to flash the ESP32-S3 and prevent reboot loop
   on_boot:
     then:
       - light.turn_on:
@@ -66,7 +68,10 @@ logger:
   level: INFO
 
 external_components:
-  - source: github://syssi/esphome-jk-bms@main
+  # - source: github://syssi/esphome-jk-bms@main
+  #   refresh: 0s
+  - source: github://txubelaxu/esphome-jk-bms@main
+    components: [ jk_rs485_sniffer , jk_rs485_bms ]
     refresh: 0s
 
 packages:
@@ -74,7 +79,8 @@ packages:
     url: https://github.com/dct-leni/syssi_collector
     files: 
       - smg_ii_sensors.yaml
-      - jk_bms_sensors.yaml
+      - jk_pb_sensors.yaml
+      # - jk_bms_sensors.yaml
     ref: main  # optional
     refresh: 0s
 
@@ -91,37 +97,49 @@ uart:
 # UART for JK-BMS
   - id: uart_bms
     baud_rate: 115200
-    rx_buffer_size: 384
+    rx_buffer_size: 500 # 384
     tx_pin: ${bms_tx_pin}
     rx_pin: ${bms_rx_pin}
 
 modbus:
-  - id: modbus_bms
-    uart_id: uart_bms
-    flow_control_pin: GPIO12
+  # - id: modbus_bms
+  #   uart_id: uart_bms
+  #   flow_control_pin: GPIO12
   - id: modbus_smg
     uart_id: uart_smg
     send_wait_time: 200ms
 
 modbus_controller:
-  - id: bms0
-    # Dip switch configuration of a single pack setup / address 0x01
-    #  1    2    4    5
-    #  on, off, off, off (0x01)
-    #
-    # Don't turn off all dip switches / don't use device address 0x00.
-    # This is the Modbus Master mode. You must select a device address
-    # between 0x01 and 0x0f so the BMS acts as Modbus Slave.
-    address: 0x01
-    modbus_id: modbus_bms
-    setup_priority: -10
-    update_interval: 5s
-    command_throttle: 50ms
+  # - id: bms0
+  #   # Dip switch configuration of a single pack setup / address 0x01
+  #   #  1    2    4    5
+  #   #  on, off, off, off (0x01)
+  #   #
+  #   # Don't turn off all dip switches / don't use device address 0x00.
+  #   # This is the Modbus Master mode. You must select a device address
+  #   # between 0x01 and 0x0f so the BMS acts as Modbus Slave.
+  #   address: 0x01
+  #   modbus_id: modbus_bms
+  #   setup_priority: -10
+  #   update_interval: 5s
+  #   command_throttle: 50ms
   - id: smg0
     address: 0x01
     modbus_id: modbus_smg
     command_throttle: 200ms
     update_interval: 10s
+
+jk_rs485_sniffer:
+  - id: sniffer0
+    protocol_version: "JK02_32S"
+    rx_timeout: 500ms
+    uart_id: uart_bms
+
+jk_rs485_bms:
+  - id: bms0
+    rs485_address: 0x01
+    jk_rs485_sniffer_id: sniffer0
+    update_interval: 30s
 
 light:
   # https://esphome.io/components/light/esp32_rmt_led_strip
