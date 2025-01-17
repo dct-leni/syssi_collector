@@ -75,37 +75,6 @@ binary_sensor:
       name: "${bms_name} alarm BATTempSensor5Absent"
 
 sensor:
-  - platform: uptime
-    id: uptime_sec
-  # +--------------------------------------+
-  # | Uptime sensor                        |
-  # +--------------------------------------+
-  - platform: uptime
-    name: ${esp_name} Uptime Sensor
-    id: uptime_sensor
-    update_interval: 5s
-    entity_category: diagnostic
-    on_raw_value:
-      then:
-        - text_sensor.template.publish:
-            id: uptime_human
-            state: !lambda |-
-              char buf[10];
-              int uptime_sec = round(id(uptime_sensor).raw_state);
-              int days = (int)(uptime_sec / 86400);
-              int hours = (int)((uptime_sec % 86400) / 3600);
-              int minutes = (int)((uptime_sec % 3600) / 60);
-              int seconds = (int)(uptime_sec % 60);
-
-              return(
-                (
-                  (days ? sprintf(buf, "%02dd ", days), std::string(buf) : "") +
-                  (hours ? sprintf(buf, "%02dh ", hours), std::string(buf) : "") +
-                  (minutes ? sprintf(buf, "%02dm ", minutes), std::string(buf) : "") +
-                  (sprintf(buf, "%02ds", seconds), std::string(buf))
-                ).c_str()
-              ); 
-
   - platform: jk_rs485_bms
     jk_rs485_bms_id: bms0
     balancing_direction:
@@ -330,15 +299,6 @@ switch:
       name: "${bms_name} special charger"            
 
 text_sensor:
-  # +--------------------------------------+
-  # | Uptime Human Readable                |
-  # +--------------------------------------+
-  - platform: template
-    name: ${esp_name} Uptime Human Readable
-    id: uptime_human
-    icon: mdi:clock-start
-    entity_category: diagnostic
-
   - platform: jk_rs485_bms
     jk_rs485_bms_id: bms0
     errors:
