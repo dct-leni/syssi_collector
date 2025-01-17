@@ -1,5 +1,5 @@
 esphome:
-  name: esphome-web-278258
+  name: "syssi-collector"
   friendly_name: syssi_collector
   min_version: 2024.6.0
   name_add_mac_suffix: false
