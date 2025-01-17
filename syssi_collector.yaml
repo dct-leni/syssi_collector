@@ -4,6 +4,13 @@ esphome:
   min_version: 2024.6.0
   name_add_mac_suffix: false
 
+substitutions:
+  name: syssi_collector
+  smg_tx_pin: GPIO02
+  smg_rx_pin: GPIO03
+  bms_tx_pin: GPIO05
+  bms_rx_pin: GPIO06
+
 esp32:
   board: esp32-s3-devkitc-1
   framework:
@@ -30,17 +37,12 @@ external_components:
   - source: github://syssi/esphome-jk-bms@main
     refresh: 0s
 
-substitutions:
-  name: combined_device
-  smg_tx_pin: GPIO02
-  smg_rx_pin: GPIO03
-  bms_tx_pin: GPIO05
-  bms_rx_pin: GPIO06
-
 packages:
   remote_package_files:
-    url: https://github.com/dct-leni/syssi_proxy
-    files: [smg_ii_sensors.yaml, jk_bms_sensors.yaml]  # optional; if not specified, all files will be included
+    url: https://github.com/dct-leni/syssi_collector
+    files: 
+      - smg_ii_sensors.yaml
+      - jk_bms_sensors.yaml
     ref: main  # optional
     refresh: 0s
 
