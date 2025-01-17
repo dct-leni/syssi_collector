@@ -10,25 +10,25 @@ esphome:
           red: 100%
           blue: 0%
           green: 0%
-          brightness: 60%
+          brightness: 30%
           effect: pulse
-      - delay: 6s
+      - delay: 3s
       - light.turn_on:
           id: ${led_id}
           red: 0%
           blue: 100%
           green: 0%
-          brightness: 60%
+          brightness: 30%
           effect: pulse
-      - delay: 6s
+      - delay: 3s
       - light.turn_on:
           id: ${led_id}
           red: 0%
           blue: 0%
           green: 100%
-          brightness: 60%
+          brightness: 30%
           effect: pulse
-      - delay: 6s
+      - delay: 3s
       - light.turn_off:
           id: ${led_id}
 
@@ -137,8 +137,8 @@ light:
     entity_category: config
     effects:
       - pulse:
-          transition_length: 550ms
-          update_interval: 550ms
+          transition_length: 350ms
+          update_interval: 350ms
 
 button:
   # https://esphome.io/components/button/restart
@@ -153,6 +153,20 @@ sensor:
     id: esp32_internal_temperature
     update_interval: 10s
     entity_category: diagnostic
+
+
+interval:
+  - interval: 5s
+    then:
+      - light.turn_on:
+          id: ${led_id}
+          red: 0%
+          blue: 0%
+          green: 100%
+          brightness: 30%
+          effect: pulse
+      - light.turn_off:
+          id: ${led_id}
 
 # <<: !include jk_bms_sensors.yaml
 # <<: !include smg_ii_sensors.yaml
