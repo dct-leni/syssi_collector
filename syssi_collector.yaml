@@ -6,16 +6,37 @@ esphome:
   on_boot:
     then:
       - light.turn_on:
-          id: esp_light
-          red: 50%
-          blue: 50%
+          id: ${led_id}
+          red: 100%
+          blue: 0%
           green: 0%
-          brightness: 50%
+          brightness: 60%
+          effect: pulse
+      - delay: 6s
+      - light.turn_on:
+          id: ${led_id}
+          red: 0%
+          blue: 100%
+          green: 0%
+          brightness: 60%
+          effect: pulse
+      - delay: 6s
+      - light.turn_on:
+          id: ${led_id}
+          red: 0%
+          blue: 0%
+          green: 100%
+          brightness: 60%
+          effect: pulse
+      - delay: 6s
+      - light.turn_off:
+          id: ${led_id}
 
 substitutions:
   name: collector
   bms_name: bms0
   inv_name: anenji
+  led_id: esp_light
   smg_tx_pin: GPIO08
   smg_rx_pin: GPIO07
   bms_tx_pin: GPIO05
@@ -107,26 +128,23 @@ light:
   # ESP Light used to see the inverter heartbeat
   # Internal : only specifying an id without a name will implicitly set this to true.
   - platform: esp32_rmt_led_strip
-    id: esp_light
+    id: ${led_id}
     rgb_order: GRB
     pin: 21
     num_leds: 1
     rmt_channel: 0
     chipset: ws2812
     entity_category: config
+    effects:
+      - pulse:
+          transition_length: 550ms
+          update_interval: 550ms
 
 button:
   # https://esphome.io/components/button/restart
   - platform: restart
     name: ${name} ESP32 Restart
     entity_category: config
-
-binary_sensor:
-  # https://esphome.io/components/binary_sensor/status  
-  - platform: status
-    name: ${name} ESP32 Online Status
-    id: esp32_online_status
-    entity_category: diagnostic
 
 sensor:
   # https://esphome.io/components/sensor/internal_temperature
