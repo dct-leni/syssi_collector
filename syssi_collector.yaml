@@ -3,8 +3,17 @@ esphome:
   friendly_name: syssi_collector
   min_version: 2024.6.0
   name_add_mac_suffix: false
+  on_boot:
+    then:
+      - light.turn_on:
+          id: esp_light
+          red: 50%
+          blue: 50%
+          green: 0%
+          brightness: 50%
 
 substitutions:
+  name: collector
   bms_name: bms0
   inv_name: anenji
   smg_tx_pin: GPIO08
@@ -16,6 +25,7 @@ esp32:
   board: esp32-s3-devkitc-1
   framework:
     type: arduino
+    version: latest
 
 wifi:
   ssid: !secret wifi_ssid
@@ -91,6 +101,40 @@ modbus_controller:
     modbus_id: modbus_smg
     command_throttle: 200ms
     update_interval: 10s
+
+light:
+  # https://esphome.io/components/light/esp32_rmt_led_strip
+  # ESP Light used to see the inverter heartbeat
+  # Internal : only specifying an id without a name will implicitly set this to true.
+  - platform: esp32_rmt_led_strip
+    id: esp_light
+    rgb_order: GRB
+    pin: 21
+    num_leds: 1
+    rmt_channel: 0
+    chipset: ws2812
+    entity_category: config
+
+button:
+  # https://esphome.io/components/button/restart
+  - platform: restart
+    name: ${name} ESP32 Restart
+    entity_category: config
+
+binary_sensor:
+  # https://esphome.io/components/binary_sensor/status  
+  - platform: status
+    name: ${name} ESP32 Online Status
+    id: esp32_online_status
+    entity_category: diagnostic
+
+sensor:
+  # https://esphome.io/components/sensor/internal_temperature
+  - platform: internal_temperature
+    name: ${name} internal temperature
+    id: esp32_internal_temperature
+    update_interval: 10s
+    entity_category: diagnostic
 
 # <<: !include jk_bms_sensors.yaml
 # <<: !include smg_ii_sensors.yaml
