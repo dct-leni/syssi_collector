@@ -1,13 +1,13 @@
 sensor:
-  - platform: total_daily_energy
-    name: "${inv_name} PV energy today"
-    restore: true
-    icon: mdi:counter
-    power_id: smg0_pv_average_power
-    filters:
-      # Multiplication factor from W to kW is 0.001
-      - multiply: 0.001
-    unit_of_measurement: kWh
+  # - platform: total_daily_energy
+  #   name: "${inv_name} PV energy today"
+  #   restore: true
+  #   icon: mdi:counter
+  #   power_id: smg0_pv_average_power
+  #   filters:
+  #     # Multiplication factor from W to kW is 0.001
+  #     - multiply: 0.001
+  #   unit_of_measurement: kWh
 
   # Fault code                                                    ULong 100 2 R
   - platform: modbus_controller
@@ -255,57 +255,57 @@ sensor:
     accuracy_decimals: 0
 
   # PV average voltage                                   0.1V     Int   219 1 R
-  - platform: modbus_controller
-    modbus_controller_id: smg0
-    name: "${inv_name} pv average voltage"
-    address: 219
-    register_type: holding
-    value_type: S_WORD
-    unit_of_measurement: "V"
-    device_class: voltage
-    state_class: measurement
-    accuracy_decimals: 1
-    filters:
-      - multiply: 0.1
+  # - platform: modbus_controller
+  #   modbus_controller_id: smg0
+  #   name: "${inv_name} pv average voltage"
+  #   address: 219
+  #   register_type: holding
+  #   value_type: S_WORD
+  #   unit_of_measurement: "V"
+  #   device_class: voltage
+  #   state_class: measurement
+  #   accuracy_decimals: 1
+  #   filters:
+  #     - multiply: 0.1
 
   # PV average current                                   0.1A     Int   220 1 R
-  - platform: modbus_controller
-    modbus_controller_id: smg0
-    name: "${inv_name} pv average current"
-    address: 220
-    register_type: holding
-    value_type: S_WORD
-    unit_of_measurement: "A"
-    device_class: current
-    state_class: measurement
-    accuracy_decimals: 1
-    filters:
-      - multiply: 0.1
+  # - platform: modbus_controller
+  #   modbus_controller_id: smg0
+  #   name: "${inv_name} pv average current"
+  #   address: 220
+  #   register_type: holding
+  #   value_type: S_WORD
+  #   unit_of_measurement: "A"
+  #   device_class: current
+  #   state_class: measurement
+  #   accuracy_decimals: 1
+  #   filters:
+  #     - multiply: 0.1
 
   # PV average power                                     1W       Int   223 1 R
-  - platform: modbus_controller
-    modbus_controller_id: smg0
-    id: smg0_pv_average_power
-    name: "${inv_name} pv average power"
-    address: 223
-    register_type: holding
-    value_type: S_WORD
-    unit_of_measurement: "W"
-    device_class: power
-    state_class: measurement
-    accuracy_decimals: 0
+  # - platform: modbus_controller
+  #   modbus_controller_id: smg0
+  #   id: smg0_pv_average_power
+  #   name: "${inv_name} pv average power"
+  #   address: 223
+  #   register_type: holding
+  #   value_type: S_WORD
+  #   unit_of_measurement: "W"
+  #   device_class: power
+  #   state_class: measurement
+  #   accuracy_decimals: 0
 
   # PV charging average power                            1W       Int   224 1 R
-  - platform: modbus_controller
-    modbus_controller_id: smg0
-    name: "${inv_name} pv charging average power"
-    address: 224
-    register_type: holding
-    value_type: S_WORD
-    unit_of_measurement: "W"
-    device_class: power
-    state_class: measurement
-    accuracy_decimals: 0
+  # - platform: modbus_controller
+  #   modbus_controller_id: smg0
+  #   name: "${inv_name} pv charging average power"
+  #   address: 224
+  #   register_type: holding
+  #   value_type: S_WORD
+  #   unit_of_measurement: "W"
+  #   device_class: power
+  #   state_class: measurement
+  #   accuracy_decimals: 0
 
   # Load percentage                                      1%       Int   225 1 R
   - platform: modbus_controller
@@ -382,175 +382,7 @@ sensor:
     accuracy_decimals: 1
     filters:
       - multiply: 0.1
-
-  # PV charging average current                          0.1A     Int   234 1 R
-  - platform: modbus_controller
-    modbus_controller_id: smg0
-    name: "${inv_name} pv charging average current"
-    address: 234
-    register_type: holding
-    value_type: S_WORD
-    unit_of_measurement: "A"
-    device_class: current
-    state_class: measurement
-    accuracy_decimals: 1
-    filters:
-      - multiply: 0.1
-
-  # # Output voltage                                        0.1V    Uint  320 1 R/W
-  # - platform: modbus_controller
-  #   modbus_controller_id: smg0
-  #   name: "${inv_name} output voltage"
-  #   address: 320
-  #   register_type: holding
-  #   value_type: U_WORD
-  #   unit_of_measurement: "V"
-  #   device_class: voltage
-  #   # state_class: measurement
-  #   accuracy_decimals: 1
-  #   filters:
-  #     - multiply: 0.1
-
-  # # Output frequency setting                              0.01Hz  Uint  321 1 R/W
-  # - platform: modbus_controller
-  #   modbus_controller_id: smg0
-  #   name: "${inv_name} output frequency setting"
-  #   address: 321
-  #   register_type: holding
-  #   value_type: U_WORD
-  #   unit_of_measurement: "Hz"
-  #   device_class: frequency
-  #   # state_class: measurement
-  #   accuracy_decimals: 2
-  #   filters:
-  #     - multiply: 0.01
-
-  # # Battery overvoltage protection point                  0.1V    Uint  323 1 R/W
-  # - platform: modbus_controller
-  #   modbus_controller_id: smg0
-  #   name: "${inv_name} battery overvoltage protection point"
-  #   address: 323
-  #   register_type: holding
-  #   value_type: U_WORD
-  #   unit_of_measurement: "V"
-  #   device_class: voltage
-  #   # state_class: measurement
-  #   accuracy_decimals: 1
-  #   filters:
-  #     - multiply: 0.1
-
-  # # Max charging voltage                                  0.1V    Uint  324 1 R/W
-  # - platform: modbus_controller
-  #   modbus_controller_id: smg0
-  #   name: "${inv_name} max charging voltage"
-  #   address: 324
-  #   register_type: holding
-  #   value_type: U_WORD
-  #   unit_of_measurement: "V"
-  #   device_class: voltage
-  #   # state_class: measurement
-  #   accuracy_decimals: 1
-  #   filters:
-  #     - multiply: 0.1
-
-  # # Floating charging voltage                             0.1V    Uint  325 1 R/W
-  # - platform: modbus_controller
-  #   modbus_controller_id: smg0
-  #   name: "${inv_name} floating charging voltage"
-  #   address: 325
-  #   register_type: holding
-  #   value_type: U_WORD
-  #   unit_of_measurement: "V"
-  #   device_class: voltage
-  #   # state_class: measurement
-  #   accuracy_decimals: 1
-  #   filters:
-  #     - multiply: 0.1
-
-  # # Battery discharge recovery point in mains mode        0.1V    Uint  326 1 R/W
-  # - platform: modbus_controller
-  #   modbus_controller_id: smg0
-  #   name: "${inv_name} battery discharge recovery point in mains mode"
-  #   address: 326
-  #   register_type: holding
-  #   value_type: U_WORD
-  #   unit_of_measurement: "V"
-  #   device_class: voltage
-  #   # state_class: measurement
-  #   accuracy_decimals: 1
-  #   filters:
-  #     - multiply: 0.1
-
-  # # Battery low voltage protection point in mains mode    0.1V    Uint  327 1 R/W
-  # - platform: modbus_controller
-  #   modbus_controller_id: smg0
-  #   name: "${inv_name} battery low voltage protection point in mains mode"
-  #   address: 327
-  #   register_type: holding
-  #   value_type: U_WORD
-  #   unit_of_measurement: "V"
-  #   device_class: voltage
-  #   # state_class: measurement
-  #   accuracy_decimals: 1
-  #   filters:
-  #     - multiply: 0.1
-
-  # # Battery low voltage protection point in off-grid mode 0.1V    Uint  329 1 R/W
-  # - platform: modbus_controller
-  #   modbus_controller_id: smg0
-  #   name: "${inv_name} battery low voltage protection point in off-grid mode"
-  #   address: 329
-  #   register_type: holding
-  #   value_type: U_WORD
-  #   unit_of_measurement: "V"
-  #   device_class: voltage
-  #   # state_class: measurement
-  #   accuracy_decimals: 1
-  #   filters:
-  #     - multiply: 0.1
-
-  # # Maximum charging current                              0.1A    Uint  332 1 R/W
-  # - platform: modbus_controller
-  #   modbus_controller_id: smg0
-  #   name: "${inv_name} maximum charging current"
-  #   address: 332
-  #   register_type: holding
-  #   value_type: U_WORD
-  #   unit_of_measurement: "A"
-  #   device_class: current
-  #   # state_class: measurement
-  #   accuracy_decimals: 1
-  #   filters:
-  #     - multiply: 0.1
-
-  # # Maximum mains charging current                        0.1A    Uint  333 1 R/W
-  # - platform: modbus_controller
-  #   modbus_controller_id: smg0
-  #   name: "${inv_name} maximum mains charging current"
-  #   address: 333
-  #   register_type: holding
-  #   value_type: U_WORD
-  #   unit_of_measurement: "A"
-  #   device_class: current
-  #   # state_class: measurement
-  #   accuracy_decimals: 1
-  #   filters:
-  #     - multiply: 0.1
-
-  # # Eq Charging voltage                                   0.1V    Uint  334 1 R/W
-  # - platform: modbus_controller
-  #   modbus_controller_id: smg0
-  #   name: "${inv_name} Eq Charging voltage"
-  #   address: 334
-  #   register_type: holding
-  #   value_type: U_WORD
-  #   unit_of_measurement: "V"
-  #   device_class: voltage
-  #   # state_class: measurement
-  #   accuracy_decimals: 1
-  #   filters:
-  #     - multiply: 0.1
-
+      
   # Rated power                                           W       Uint  643 1 R
   - platform: modbus_controller
     modbus_controller_id: smg0
